@@ -1,0 +1,24 @@
+<svg width="452" height="452" viewBox="0 0 452 452" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="452" height="452" rx="100" ry="100" fill="url(#recly_badge_gradient)" />
+  <rect
+    width="452"
+    height="452"
+    rx="100"
+    ry="100"
+    fill="url(#recly_badge_sheen)"
+    fill-opacity="0.5"
+  />
+  <circle cx="226" cy="226" r="132" fill="none" stroke="#ffffff" stroke-opacity="0.28" stroke-width="16" />
+  <circle cx="226" cy="226" r="86" fill="#ffffff" />
+  <circle cx="333" cy="139" r="22" fill="#ffffff" />
+  <defs>
+    <linearGradient id="recly_badge_gradient" x1="70" y1="0" x2="382" y2="452" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8a5f99" />
+      <stop offset="1" stop-color="#190f1d" />
+    </linearGradient>
+    <linearGradient id="recly_badge_sheen" x1="226" y1="0" x2="226" y2="260" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+</svg>

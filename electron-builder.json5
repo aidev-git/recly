@@ -1,0 +1,80 @@
+// @see - https://www.electron.build/configuration/configuration
+{
+  "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
+  "appId": "app.recly.ai",
+  "productName": "Recly",
+  // uiohook-napi ships N-API prebuilds that are ABI-stable across Node/Electron
+  // versions by design — no per-Electron rebuild needed, and this machine has
+  // no native build toolchain to do one anyway.
+  "npmRebuild": false,
+  "directories": {
+    "output": "release",
+  },
+  "files": [
+    "dist",
+    "dist-electron",
+  ],
+  "asarUnpack": [
+    "node_modules/uiohook-napi/**",
+    "node_modules/ffmpeg-static/**",
+    "node_modules/onnxruntime-node/**",
+    "node_modules/sharp/**",
+    "node_modules/@img/**",
+  ],
+  "extraResources": [
+    {
+      "from": "electron/native/bin",
+      "to": "native",
+    },
+  ],
+  // Only takes effect once releases are actually published to this repo — until then,
+  // electron-updater's checks simply fail quietly (see electron/updater.ts's 'error' handler).
+  "publish": [
+    {
+      "provider": "github",
+      "owner": "syedships",
+      "repo": "Recly",
+    },
+  ],
+  // Lets the OS open a .reclyproj file directly into the app (double-click / "Open with").
+  "fileAssociations": [
+    {
+      "ext": "reclyproj",
+      "name": "Recly Project",
+      "description": "Recly project file",
+      "icon": "build/icon.icns",
+      "role": "Editor",
+    },
+  ],
+  "mac": {
+    "icon": "build/icon.icns",
+    "target": [
+      { "target": "dmg", "arch": ["x64", "arm64"] },
+      { "target": "zip", "arch": ["x64", "arm64"] },
+    ],
+    "hardenedRuntime": true,
+    "entitlements": "build/entitlements.mac.plist",
+    "entitlementsInherit": "build/entitlements.mac.plist",
+    "extendInfo": {
+      "NSCameraUsageDescription": "Recly needs camera access to show your webcam overlay while recording.",
+      "NSMicrophoneUsageDescription": "Recly needs microphone access to record your voice alongside the screen.",
+    },
+  },
+  "win": {
+    "icon": "build/icon.ico",
+    "target": ["nsis"],
+    "executableName": "Recly",
+    "artifactName": "${productName}-windows-${arch}.${ext}",
+  },
+  "linux": {
+    "icon": "public/icon/512.png",
+    "target": ["AppImage"],
+    "category": "AudioVideo",
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+  },
+}
